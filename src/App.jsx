@@ -18,7 +18,7 @@ function App() {
     const updatedTasks_delete = tasks.filter((task, idx) => {return index !== idx});
     setTasks(updatedTasks_delete);
   }
-
+//mycomment
   return (
     <>
       <div>
