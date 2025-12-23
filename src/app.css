@@ -134,6 +134,7 @@ li button:hover {
 }
 
 /* ===== Animation ===== */
+
 @keyframes fadeIn {
   from {
     opacity: 0;
