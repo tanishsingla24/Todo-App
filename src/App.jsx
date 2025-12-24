@@ -1,9 +1,16 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import './app.css';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(() => {
+    const saved = localStorage.getItem("tasks");
+    return saved ? JSON.parse(saved) : [];
+  });
   const [newTask, setNewTask] = useState("");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function updateTask(index) {
     const updatedTasks = tasks.map((task, idx) => {
@@ -33,6 +40,7 @@ function App() {
 
         <button onClick={() => {
           setTasks([...tasks, { title: newTask, status: 'Pending' }]);
+          localStorage.setItem("tasks", JSON.stringify([...tasks, { title: newTask, status: 'Pending' }]))
         }}>Add Task</button>
 
         
